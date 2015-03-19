@@ -6,8 +6,6 @@ var path = require("path");
 var request = require("request");
 var fs = require("fs");
 
-
-
 app.use(express.static(path.join(__dirname,"public")));
 
 var server = http.createServer(app).listen(3000, function()
@@ -52,32 +50,33 @@ io.on("connection", function(socket)
 		// change intensity
 		if(Math.random() > 0.5)
 		{
-			var intensity;
-			switch(Math.floor((Math.random() * 6) + 0))
+			var intensityRange;
+			var intensity = Math.floor((Math.random() * 6) + 0);
+			switch(intensity)
 			{
 				case 0:
-					intensity = "low";
+					intensityRange = "low";
 					break;
 				case 1: 
-					intensity = "medium-low";
+					intensityRange = "medium-low";
 					break;
 				case 2:
-					intensity = "medium";
+					intensityRange = "medium";
 					break;
 				case 3:
-					intensity = "medium-high";
+					intensityRange = "medium-high";
 					break;
 				case 4:
-					intensity = "high";
+					intensityRange = "high";
 					break;
 				case 5:
-					intensity = "extreme";
+					intensityRange = "extreme";
 					break;
 				default:
 					console.log("RNG error");
 					break;
 			}
-			socket.emit("crowd", {intensity: intensity, timestamp: Date.now()});
+			socket.emit("crowd", {intensityRange: intensityRange, intensity: intensity, timestamp: Date.now()});
 		}
 
 		// change song

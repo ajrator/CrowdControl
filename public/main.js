@@ -4,16 +4,21 @@ $(function()
 
 	var chart = c3.generate({
 	bindto: "#intensityGraph",
-	data: {
-		x: "Time",
-		columns: [
-			['Time'],
-			['Intensity']
-		],
-		types: {
-			Intensity: 'area'
+		data: {
+			x: "Time",
+			columns: [
+				['Time'],
+				['Intensity']
+			],
+			types: {
+				Intensity: 'area'
+			}
+		},
+		axis: {
+			x: {
+				type: "timeseries"
+			}
 		}
-	}
 	});
 
 	socket.on("ableton", function(data)
@@ -29,10 +34,12 @@ $(function()
 		$("#currentIntensity").text(data.intensity);
 		
 		chart.flow({
-		   columns: [
+			x: "Time",
+			columns: [
 				['Time', data.timestamp],
 				['Intensity', data.intensity]
-		   ]
+			],
+			length: 0
 		});
 
 		$("#currentIntensityRange").text(data.intensityRange);
