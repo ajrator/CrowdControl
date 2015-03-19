@@ -37,7 +37,14 @@ footer {
 
 
 .btn-skin {
-  color: #fff;
+  color: #222;
+  background-color: #222;
+  border-color: #111;
+}
+
+
+alto{
+  color: #222;
   background-color: #222;
   border-color: #111;
 }
