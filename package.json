@@ -1,0 +1,16 @@
+{
+  "name": "crowdc",
+  "version": "1.0.0",
+  "description": "Server for Crowd Control (SXSW MHC 2015)",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.12.3",
+    "request": "^2.53.0",
+    "socket.io": "^1.3.5"
+  }
+}

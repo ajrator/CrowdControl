@@ -1,0 +1,21 @@
+// ableton:
+
+{
+	effects: ["effectOne", "effectTwo"],
+	bpm: 120,
+	timestamp: 18213828382
+}
+
+// crowd:
+
+{
+	intensity: "high",
+	timestamp: 12381213123
+}
+
+// song:
+
+{
+	title: "songtitle",
+	timestamp: 1231231241231
+}
