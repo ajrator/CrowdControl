@@ -8,6 +8,9 @@ var fs = require("fs");
 
 app.use(express.static(path.join(__dirname,"public")));
 
+// subtract random values from this so our time values aren't massive
+var appStart = Date.now();
+
 var server = http.createServer(app).listen(3000, function()
 {
 	console.log("HTTP server listening.");
@@ -19,7 +22,7 @@ io.on("connection", function(socket)
 {
 	socket.on("update", function(data)
 	{
-
+		
 	});
 
 	// emits random input values
@@ -41,8 +44,11 @@ io.on("connection", function(socket)
 					myEffects.push(effectNames[i]);
 				}
 			}
-			ableton.effects = myEffects;
-			ableton.timestamp = Date.now();
+			ableton.effectsOn = myEffects;
+			ableton.effectsLoaded = effectNames;
+			ableton.tempo = 120;
+			ableton.song_time = Date.now() - appStart;
+
 
 			socket.emit("ableton", ableton);
 		}
@@ -76,13 +82,13 @@ io.on("connection", function(socket)
 					console.log("RNG error");
 					break;
 			}
-			socket.emit("crowd", {intensityRange: intensityRange, intensity: intensity, timestamp: Date.now()});
+			socket.emit("crowd", {intensityRange: intensityRange, intensity: intensity, timestamp: Date.now()-appStart});
 		}
 
 		// change song
-		if(Math.random() > 0.01)
+		if(Math.random() < 0.1)
 		{
-			socket.emit("song", { title: "song " + Math.random(), timestamp: Date.now()});
+			socket.emit("song", { titles: "song " + Math.random(), song_time: Date.now()-appStart});
 		}
 
 	}, 1000);

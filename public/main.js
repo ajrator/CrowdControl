@@ -11,12 +11,16 @@ $(function()
 				['Intensity']
 			],
 			types: {
-				Intensity: 'area'
+				Intensity: 'spline'
 			}
 		},
 		axis: {
 			x: {
 				type: "timeseries"
+			},
+			y: {
+				max: 6,
+				min: 6
 			}
 		}
 	});
@@ -24,8 +28,36 @@ $(function()
 	socket.on("ableton", function(data)
 	{
 		console.log("Ableton data:");
-		$("#currentEffects").text(data.effects);
 		console.dir(data);
+		$("#currentEffects").text(data.effectsOn);
+
+		// load effects
+		var effectColumns = [];
+		for(i = 0; i < data.effectsLoaded.length; i++)
+		{
+			if(data.effectsOn.indexOf(data.effectsLoaded[i]) == -1)
+			{
+				// effect channel not turned on
+				effectColumns.push([data.effectsLoaded[i], 0]);
+			}
+			else
+			{
+				// channel is turned on
+				effectColumns.push([data.effectsLoaded[i], 1]);
+			}
+		}
+
+		effectColumns.push(["Time", data.song_time]);
+		console.log("Effects updated:");
+		console.dir(effectColumns);
+
+		chart.flow({
+			x: "Time",
+			columns: effectColumns,
+			length: 0
+		});
+
+		$("#currentTempo").text(data.tempo);
 	});
 
 	socket.on("crowd", function(data)
