@@ -10,6 +10,7 @@ app.use(express.static(path.join(__dirname,"public")));
 
 // subtract random values from this so our time values aren't massive
 var appStart = Date.now();
+app.use
 
 var server = http.createServer(app).listen(3000, function()
 {
