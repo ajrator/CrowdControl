@@ -51,9 +51,19 @@ $(function()
 		console.log("Effects updated:");
 		console.dir(effectColumns);
 
+		// generate "Types" array with dynamic keys
+		var effectTypes = {};
+		for(i = 0; i < data.effectsLoaded.length; i++)
+		{
+			effectTypes[data.effectsLoaded[i]] = "step";
+		}
+		effectTypes["Time"] = "spline";
+		console.dir(effectTypes);
+
 		chart.flow({
 			x: "Time",
 			columns: effectColumns,
+			types: effectTypes,
 			length: 0
 		});
 

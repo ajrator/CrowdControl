@@ -22,7 +22,7 @@ io.on("connection", function(socket)
 {
 	socket.on("update", function(data)
 	{
-		
+
 	});
 
 	// emits random input values
@@ -30,9 +30,9 @@ io.on("connection", function(socket)
 	setInterval(function()
 	{
 		// change effect status
+		var ableton = {};
 		if(Math.random() > 0.5)
 		{
-			var ableton = {};
 			// example effect names
 			effectNames = ["Auto Filter", "Vocoder", "Compressor", "EQ Eight"];
 			myEffects = [];
@@ -50,10 +50,11 @@ io.on("connection", function(socket)
 			ableton.song_time = Date.now() - appStart;
 
 
-			socket.emit("ableton", ableton);
+			//socket.emit("ableton", ableton);
 		}
 
 		// change intensity
+		var crowd = {};
 		if(Math.random() > 0.5)
 		{
 			var intensityRange;
@@ -82,14 +83,17 @@ io.on("connection", function(socket)
 					console.log("RNG error");
 					break;
 			}
-			socket.emit("crowd", {intensityRange: intensityRange, intensity: intensity, timestamp: Date.now()-appStart});
+			crowd = {intensityRange: intensityRange, intensity: intensity, timestamp: Date.now()-appStart};
 		}
 
 		// change song
+		var song = {};
 		if(Math.random() < 0.1)
 		{
-			socket.emit("song", { titles: "song " + Math.random(), song_time: Date.now()-appStart});
+			song = { titles: "song " + Math.random(), song_time: Date.now()-appStart};
 		}
+
+		socket.emit("update", {ableton: ableton, song: song, crowd: crowd})
 
 	}, 1000);
 });
