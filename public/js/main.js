@@ -204,33 +204,9 @@ var chart = c3.generate({
 			console.dir(valueKeys);
 
 
-// TRY FLOWING INTENSITY VALUES SEPARATELY FROM FILTER DATA
-/*
-			chart.flow({
-					json: [flowJSON],
-					keys: {
-						x: "time",
-						value: valueKeys
-					},
-					length: 0,
-					types: effectTypes
-			});
-*/
-/*
-			chart.flow({
-			        json: [
-      {a: 1, name: 'www.site1.com', upload: 200, download: 200, total: 400},
-      {b: 2, name: 'www.site2.com', upload: 100, download: 300, total: 400},
-      {c: 3, name: 'www.site3.com', upload: 300, download: 200, total: 500},
-      {d: 4, name: 'www.site4.com', upload: 400, download: 100, total: 500},
-    ],
-    keys: {
-      x: 'a', // it's possible to specify 'x' when category axis
-      value: ['upload', 'download'],
-    }
-			})
-*/
-		}
+           form.submit('team.html/submit', function(err, res) {
+              console.log(res.statusCode);
+            });
 	});
 
 });
