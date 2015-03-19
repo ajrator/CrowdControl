@@ -38,7 +38,7 @@ function launchParticlesJS(tag_id, params){
         distance: 100,
         color: '#fff',
         opacity: 1,
-        width: 1,
+        width: 1,h
         condensed_mode: {
           enable: false,
           rotateX: 3000,
