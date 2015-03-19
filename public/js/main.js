@@ -25,73 +25,101 @@ $(function()
 		}
 	});
 
-	socket.on("ableton", function(data)
+	socket.on("update", function(data)
 	{
-		console.log("Ableton data:");
+		console.log("Update packet received:");
 		console.dir(data);
-		$("#currentEffects").text(data.effectsOn);
 
-		// load effects
-		var effectColumns = [];
-		for(i = 0; i < data.effectsLoaded.length; i++)
+		var flowColumns = [];
+
+		if(Object.keys(data.ableton).length != 0)
 		{
-			if(data.effectsOn.indexOf(data.effectsLoaded[i]) == -1)
+
+			console.log("Ableton data:");
+			console.dir(data.ableton);
+			var ableton = data.ableton;
+			$("#currentEffects").text(ableton.effectsOn);
+
+			// load effects
+			var effectColumns = [];
+			for(i = 0; i < ableton.effectsLoaded.length; i++)
 			{
-				// effect channel not turned on
-				effectColumns.push([data.effectsLoaded[i], 0]);
+				if(ableton.effectsOn.indexOf(ableton.effectsLoaded[i]) == -1)
+				{
+					// effect channel not turned on
+					//effectColumns.push([ableton.effectsLoaded[i], 0]);
+					flowColumns.push([ableton.effectsLoaded[i], 0]);
+				}
+				else
+				{
+					// channel is turned on
+					//effectColumns.push([ableton.effectsLoaded[i], 1]);
+					flowColumns.push([ableton.effectsLoaded[i], 1]);
+				}
 			}
-			else
+
+			//effectColumns.push(["Time", ableton.song_time]);
+			console.log("Effects updated:");
+			console.dir(effectColumns);
+
+			// generate "Types" array with dynamic keys
+			var effectTypes = {};
+			for(i = 0; i < ableton.effectsLoaded.length; i++)
 			{
-				// channel is turned on
-				effectColumns.push([data.effectsLoaded[i], 1]);
+				effectTypes[ableton.effectsLoaded[i]] = "step";
 			}
+			effectTypes["Time"] = "spline";
+			console.dir(effectTypes);
+
+			// chart.flow({
+			// 	x: "Time",
+			// 	columns: effectColumns,
+			// 	types: effectTypes,
+			// 	length: 0
+			// });
+			
+			$("#currentTempo").text(ableton.tempo);
 		}
 
-		effectColumns.push(["Time", data.song_time]);
-		console.log("Effects updated:");
-		console.dir(effectColumns);
-
-		// generate "Types" array with dynamic keys
-		var effectTypes = {};
-		for(i = 0; i < data.effectsLoaded.length; i++)
+		if(Object.keys(data.crowd).length != 0)
 		{
-			effectTypes[data.effectsLoaded[i]] = "step";
+			console.log("Crowd data:");
+			console.dir(data.crowd);
+			var crowd = data.crowd;
+			$("#currentIntensity").text(crowd.intensity);
+			
+			// chart.flow({
+			// 	x: "Time",
+			// 	columns: [
+			// 		['Time', crowd.timestamp],
+			// 		['Intensity', crowd.intensity]
+			// 	],
+			// 	length: 0
+			// });
+
+			flowColumns.push(["Intensity", crowd.intensity]);
+
+			$("#currentIntensityRange").text(crowd.intensityRange);
+			console.dir(crowd);
 		}
-		effectTypes["Time"] = "spline";
-		console.dir(effectTypes);
 
-		chart.flow({
-			x: "Time",
-			columns: effectColumns,
-			types: effectTypes,
-			length: 0
-		});
 
-		$("#currentTempo").text(data.tempo);
-	});
+		if(Object.keys(data.song).length != 0)
+		{
+			console.log("Song changed: ");
+			$("#currentSong").text(data.song.title);
+			console.dir(data.song);
+		}
 
-	socket.on("crowd", function(data)
-	{
-		console.log("Crowd data:");
-		$("#currentIntensity").text(data.intensity);
-		
-		chart.flow({
-			x: "Time",
-			columns: [
-				['Time', data.timestamp],
-				['Intensity', data.intensity]
-			],
-			length: 0
-		});
-
-		$("#currentIntensityRange").text(data.intensityRange);
-		console.dir(data);
-	});
-
-	socket.on("song", function(data)
-	{
-		console.log("Song changed: ");
-		$("#currentSong").text(data.title);
-		console.dir(data);
+		// only update the graph if either ableton or crowd data changed
+		if(Object.keys(data.ableton).length != 0 || Object.keys(data.crowd).length != 0)
+		{
+			flowColumns.push(["Time", data.song_time]);
+			chart.flow({
+				x: "Time",
+				columns: flowColumns,
+				length: 0
+			});
+		}
 	});
 });

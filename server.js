@@ -47,8 +47,6 @@ io.on("connection", function(socket)
 			ableton.effectsOn = myEffects;
 			ableton.effectsLoaded = effectNames;
 			ableton.tempo = 120;
-			ableton.song_time = Date.now() - appStart;
-
 
 			//socket.emit("ableton", ableton);
 		}
@@ -83,17 +81,17 @@ io.on("connection", function(socket)
 					console.log("RNG error");
 					break;
 			}
-			crowd = {intensityRange: intensityRange, intensity: intensity, timestamp: Date.now()-appStart};
+			crowd = {intensityRange: intensityRange, intensity: intensity};
 		}
 
 		// change song
 		var song = {};
 		if(Math.random() < 0.1)
 		{
-			song = { titles: "song " + Math.random(), song_time: Date.now()-appStart};
+			song = { titles: "song " + Math.random()};
 		}
 
-		socket.emit("update", {ableton: ableton, song: song, crowd: crowd})
+		socket.emit("update", {ableton: ableton, song: song, crowd: crowd, song_time: Date.now()-appStart})
 
 	}, 1000);
 });
