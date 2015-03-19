@@ -1,0 +1,176 @@
+
+
+/*
+This was made by João Sardinha
+Visit me at http://johnsardine.com/
+
+It has been tested in all modern browsers.
+
+These menu styles are based on Dark Button Navigation By Orman Clark,
+you can download a PSD version of these menus at his website, PremiumPixels.com.
+Please Check him out, his website contains lots of really high quality freebies.
+
+Horizontal PSD
+http://www.premiumpixels.com/dark-button-menu-hor-psd/
+
+Vertical PSD
+http://www.premiumpixels.com/dark-button-menu-hor-2-psd/
+*/
+
+/*
+
+/*This is for demo purposes only, do not include in your stylesheet*/
+body{
+	font-family:Arial, Helvetica, sans-serif;
+	background: url(bg.png);
+	margin:0 auto;
+	width:520px;
+	color:#9fa8b0;
+}
+a:link {
+	color: #9fa8b0;
+	font-weight: bold;
+	text-decoration:none;
+}
+a:visited {
+	color: #9fa8b0;
+	font-weight:bold;
+	text-decoration:none;
+}
+a:active,
+a:hover {
+	color: #bd5a35;
+	text-decoration:underline;
+}
+.menu-hor{
+	margin:0 auto !important;
+	width:337px;
+	margin-bottom:20px !important;
+	margin-top:20px !important;
+}
+.menu-ver{
+	margin:0 auto !important;
+	width:200px;
+}
+
+/*
+Horizontal Navigation Style
+------------------------------------------------------------------ */
+.menu-hor{
+	/*Reset Elements*/
+	list-style:none;
+	margin:0;
+	padding:0;
+	
+	height:30px;
+	
+	font-size:12px;
+
+	margin:10px;
+}
+.menu-hor li a{
+	display:block;
+	float:left;
+	text-decoration:none;
+	
+	color:#9fa8b0;/* Normal Link Color*/
+	
+	border: 1px solid #252f35;
+	
+	background:#2a343b url(nav-hor.png) top repeat-x; /*Background - DONT FORGET TO COPY THE button-bg.png IMAGE TO YOUR IMAGES FOLDER AND AJUST THE PATH ACCORDINGLY*/
+	padding:6px 10px;
+	
+	margin-right:8px;
+
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	
+	text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.2);
+	box-shadow: 0 1px 1px rgba(0,0,0,0.2);
+}
+.menu-hor a:hover,
+.menu-hor a:focus,
+.menu-hor .current{
+	outline:none;
+	color:#eef2f5;/*Hover link color*/
+	background:#3d4c55 url(nav-hor.png) bottom repeat-x;/*Background - DONT FORGET TO COPY THE button-bg.png IMAGE TO YOUR IMAGES FOLDER AND AJUST THE PATH ACCORDINGLY*/
+}
+.menu-hor li a:active{
+	color:#9fa8b0; /*Hit state link color, same as normal link color*/
+	border: 1px solid transparent;
+	border-bottom:1px solid #4f5b64;
+	
+	background: #252e34;
+	-moz-box-shadow:inset 0px 1px 8px rgba(0,0,0,0.25);
+	-webkit-box-shadow:inset 0px 1px 8px rgba(0,0,0,0.25);
+	box-shadow:inset 0px 1px 8px rgba(0,0,0,0.25);
+}
+
+/*
+Vertical Navigation Style
+------------------------------------------------------------------ */
+.menu-ver{
+	/*Reset Elements*/
+	list-style:none;
+	margin:0;
+	padding:0;
+
+	font-size:12px;
+
+	margin:10px;
+	
+	padding:7px;
+	padding-bottom:5px;
+	
+	width:200px;
+		
+	/*Items Container Border Radius*/
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+
+	/* Items Container Background*/
+	background: #252e34;
+	-moz-box-shadow:inset 0px 1px 8px rgba(0,0,0,0.25), inset 0 -1px 0 rgba(255,255,255,0.25);
+	-webkit-box-shadow:inset 0px 1px 8px rgba(0,0,0,0.25), inset 0 -1px 0 rgba(255,255,255,0.25);
+	box-shadow:inset 0px 1px 8px rgba(0,0,0,0.25), inset 0 -1px 0 rgba(255,255,255,0.25);
+}
+.menu-ver li a{
+	display: block;
+	position: relative;
+	text-decoration:none;
+	
+	color:#9fa8b0;/* Normal Link Color*/
+	
+	background:#3e484e url(nav-ver.png) top repeat-x; /*Background - DONT FORGET TO COPY THE button-bg.png IMAGE TO YOUR IMAGES FOLDER AND AJUST THE PATH ACCORDINGLY*/
+	padding:6px;
+		
+	margin:5px 5px 7px 5px;
+
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	
+	text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	
+	-moz-box-shadow: 0 1px 1px rgba(0,0,0,0.2);
+	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.2);
+	box-shadow: 0 1px 1px rgba(0,0,0,0.2);
+}
+.menu-ver a:hover,
+.menu-ver a:focus,
+.menu-ver .current{
+	outline:none;
+	color:#eef2f5;/*Hover link color*/
+	background:#525f67 url(nav-ver.png) -27px repeat-x;/*Background - DONT FORGET TO COPY THE button-bg.png IMAGE TO YOUR IMAGES FOLDER AND AJUST THE PATH ACCORDINGLY*/
+}
+.menu-ver li a:active{
+	color:#9fa8b0; /*Hit state link color, same as normal link color*/
+	padding:7px 6px 5px 6px;
+	background:#4a5156 url(nav-ver.png) bottom repeat-x;/*Background - DONT FORGET TO COPY THE button-bg.png IMAGE TO YOUR IMAGES FOLDER AND AJUST THE PATH ACCORDINGLY*/
+}
+
