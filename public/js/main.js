@@ -11,7 +11,7 @@ $(function()
 				['Intensity']
 			],
 			types: {
-				Intensity: 'spline'
+				Intensity: 'area-spline'
 			}
 		},
 		axis: {
@@ -28,6 +28,7 @@ $(function()
 	var effects = c3.generate({
 		bindto: "#effectsGraph",
 		data: {
+			type: "area-step",
 			x: "time",
 			columns: [
 				['time']
