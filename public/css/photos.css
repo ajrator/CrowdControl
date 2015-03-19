@@ -2,40 +2,62 @@
  
 body {
     <!-- src: http://subtlepatterns.com/?p=1045 -->
-    background: url('dark_geometric.png');
+/*    background-image: url("./images/backer.jpg");*/
 }
  
-#container {
+#container4 {
     width: 1000px;
     overflow: hidden;
     margin: 50px auto;
-    background: white;
+/*    background-color: red;*/
+
+/*    background-image: url('backer.jpg');  */
 }
 
 /*header*/
 header {
     width: 800px;
     margin: 40px auto;
+    text-align: center;
 }
  
 header h1 {
     text-align: center;
-    font: 100 60px/1.5 Helvetica, Verdana, sans-serif;
+    font: 100 60px/1.5 Helvetica, Monaco, sans-serif;
+    color:white;
      
 }
  
 header p {
     font: 100 15px/1.5 Helvetica, Verdana, sans-serif;
     text-align: justify;
+    color:white;
+}
+#test {
+    font: 100 15px/1.5 Helvetica, Verdana, sans-serif;
+    text-align: center;
+    color:white;
 }
  
 /*photobanner*/
  
+#intro {
+    background-color:grey;
+}
+.intro {
+    background-color:grey;
+}
+
+
+
 .photobanner {
     height: 233px;
     width: 3550px;
-    margin-bottom: 80px;
+    margin-bottom: 10px;
+/*    border: 2px solid;*/
+/*    border-radius: 25px;*/
 }
+
 
 
 /*keyframe animations*/
@@ -95,4 +117,32 @@ header p {
    margin-left: -2125px;
  }
  
+}
+
+
+.photobanner {
+    height: 233px;
+    width: 3550px;
+    margin-bottom: 80px;
+}
+ 
+.photobanner img {
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+ 
+.photobanner img:hover {
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+    cursor: pointer;
+ 
+    -webkit-box-shadow: 0px 3px 5px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 3px 5px rgba(0,0,0,0.2);
+    box-shadow: 0px 3px 5px rgba(0,0,0,0.2);
 }
